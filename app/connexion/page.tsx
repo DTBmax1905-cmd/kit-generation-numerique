@@ -121,19 +121,18 @@ export default function ConnexionPage() {
 
       {/* Connexion admin CMS */}
       <div className="card p-5">
-        <h2 className="font-semibold text-gray-700 mb-1 text-sm">Accès administration</h2>
-        <p className="text-xs text-gray-400 mb-4">
-          Réservé aux gestionnaires de contenu du site.
-        </p>
-
         {adminUser ? (
           <div>
-            <p className="text-sm text-gray-600 mb-3">
-              Connecté : <span className="font-medium">{adminUser.email as string}</span>
-            </p>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-lg">⚙️</span>
+              <div>
+                <p className="text-sm font-semibold text-gray-700">Connecté en tant qu&apos;admin</p>
+                <p className="text-xs text-gray-400">{adminUser.email as string}</p>
+              </div>
+            </div>
             <div className="flex gap-2">
               <a href="/admin/index.html" className="btn-primary text-sm py-2 px-4 text-center flex-1">
-                Ouvrir l&apos;admin
+                Gérer le contenu (CMS)
               </a>
               <button
                 onClick={() => window.netlifyIdentity?.logout()}
@@ -144,13 +143,22 @@ export default function ConnexionPage() {
             </div>
           </div>
         ) : (
-          <button
-            onClick={() => window.netlifyIdentity?.open('login')}
-            className="w-full btn-primary text-sm"
-            disabled={!identityLoaded}
-          >
-            {identityLoaded ? 'Connexion administrateur' : 'Chargement...'}
-          </button>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-lg">🔐</span>
+              <h2 className="font-semibold text-gray-700 text-sm">Vous êtes administrateur ?</h2>
+            </div>
+            <p className="text-xs text-gray-400 mb-4">
+              Connectez-vous avec votre compte pour accéder au profil Administrateur et gérer le contenu du site.
+            </p>
+            <button
+              onClick={() => window.netlifyIdentity?.open('login')}
+              className="w-full btn-primary text-sm"
+              disabled={!identityLoaded}
+            >
+              {identityLoaded ? 'Se connecter' : 'Chargement...'}
+            </button>
+          </div>
         )}
       </div>
     </div>
