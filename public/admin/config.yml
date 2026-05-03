@@ -12,6 +12,8 @@ collections:
     label: Fiches mémo
     label_singular: Fiche
     folder: content/fiches
+    format: json
+    extension: json
     create: true
     slug: "{{slug}}"
     identifier_field: titre
@@ -45,6 +47,8 @@ collections:
     label: Jeux en ligne
     label_singular: Jeu
     folder: content/jeux
+    format: json
+    extension: json
     create: true
     slug: "{{slug}}"
     identifier_field: titre
