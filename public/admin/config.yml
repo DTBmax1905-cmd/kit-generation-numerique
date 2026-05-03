@@ -1,0 +1,75 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: fr
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: fiches
+    label: Fiches mémo
+    label_singular: Fiche
+    folder: content/fiches
+    create: true
+    slug: "{{slug}}"
+    identifier_field: titre
+    fields:
+      - { name: id, label: Identifiant, widget: string, hint: "Identifiant unique sans espaces (ex: yoga-posture-1)" }
+      - { name: titre, label: Titre, widget: string }
+      - name: thematique
+        label: Thématique
+        widget: select
+        options:
+          - { label: "Activités sportives", value: sportives }
+          - { label: "Activités ressources", value: ressources }
+          - { label: "Activités manuelles", value: manuelles }
+          - { label: "Activités culturelles", value: culturelles }
+          - { label: "Activités jeux", value: jeux }
+      - name: sous_thematique
+        label: Sous-thématique
+        widget: string
+        hint: "ID de la sous-thématique (ex: yoga, bricolage, chateaux)"
+      - name: type
+        label: Type de fichier
+        widget: select
+        options:
+          - { label: Image (JPG, PNG), value: image }
+          - { label: PDF, value: pdf }
+      - { name: fichier, label: Fichier, widget: file }
+      - { name: description, label: Description, widget: text, required: false }
+      - { name: date_maj, label: Date de mise à jour, widget: datetime }
+
+  - name: jeux
+    label: Jeux en ligne
+    label_singular: Jeu
+    folder: content/jeux
+    create: true
+    slug: "{{slug}}"
+    identifier_field: titre
+    fields:
+      - { name: id, label: Identifiant, widget: string }
+      - { name: titre, label: Titre, widget: string }
+      - name: categorie
+        label: Catégorie
+        widget: select
+        options:
+          - { label: Éducatif, value: educatif }
+          - { label: Quiz, value: quiz }
+          - { label: Logique, value: logique }
+          - { label: Créativité, value: creativite }
+      - { name: url, label: URL du jeu, widget: string, hint: "URL complète (https://...)" }
+      - { name: description, label: Description courte, widget: text }
+      - name: emoji
+        label: Emoji
+        widget: string
+        default: "🎮"
+      - name: couleur
+        label: Couleur de la carte
+        widget: select
+        options:
+          - { label: Bleu, value: blue }
+          - { label: Orange, value: orange }
+          - { label: Turquoise, value: teal }
+          - { label: Vert, value: green }

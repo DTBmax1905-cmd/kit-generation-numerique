@@ -1,0 +1,38 @@
+[
+  {
+    "id": "quiz-educatif",
+    "titre": "Quiz éducatif",
+    "categorie": "educatif",
+    "url": "https://quiz-educatif.netlify.app/",
+    "description": "Testez vos connaissances numériques avec ce quiz interactif.",
+    "emoji": "🧠",
+    "couleur": "blue"
+  },
+  {
+    "id": "les-imbattables",
+    "titre": "Les Imbattables",
+    "categorie": "quiz",
+    "url": "https://les-imbattables.netlify.app/",
+    "description": "Êtes-vous imbattables ? Relevez le défi et prouvez-le !",
+    "emoji": "🏆",
+    "couleur": "orange"
+  },
+  {
+    "id": "cartes-mission-info",
+    "titre": "Cartes Mission Info",
+    "categorie": "educatif",
+    "url": "https://cartes-mission-info.netlify.app/",
+    "description": "Partez en mission pour décrypter et vérifier l'information.",
+    "emoji": "🔍",
+    "couleur": "teal"
+  },
+  {
+    "id": "jeu-de-loie",
+    "titre": "Jeu de l'Oie",
+    "categorie": "logique",
+    "url": "https://jeu-de-loie.netlify.app/",
+    "description": "Le grand classique revisité en version numérique éducative.",
+    "emoji": "🎲",
+    "couleur": "green"
+  }
+]
