@@ -30,29 +30,32 @@ export default function ProfileProvider({ children }: { children: React.ReactNod
     if (saved) setProfilState(saved)
     setReady(true)
 
-    // Auto-assign admin profile when Netlify Identity user is logged in
+    const setAdmin = () => {
+      localStorage.setItem('kit-gn-profil', 'admin')
+      setProfilState('admin')
+    }
+
+    const revertAdmin = () => {
+      const prev = localStorage.getItem('kit-gn-profil-prev') as ProfilId | null
+      if (prev) {
+        localStorage.setItem('kit-gn-profil', prev)
+        setProfilState(prev)
+      } else {
+        localStorage.removeItem('kit-gn-profil')
+        setProfilState(null)
+      }
+    }
+
     const applyIdentity = () => {
       if (!window.netlifyIdentity) return
-      const user = window.netlifyIdentity.currentUser()
-      if (user) {
-        localStorage.setItem('kit-gn-profil', 'admin')
-        setProfilState('admin')
-      }
-      window.netlifyIdentity.on('login', () => {
-        localStorage.setItem('kit-gn-profil', 'admin')
-        setProfilState('admin')
-      })
-      window.netlifyIdentity.on('logout', () => {
-        // Revert to last non-admin profile or clear
-        const prev = localStorage.getItem('kit-gn-profil-prev') as ProfilId | null
-        if (prev) {
-          localStorage.setItem('kit-gn-profil', prev)
-          setProfilState(prev)
-        } else {
-          localStorage.removeItem('kit-gn-profil')
-          setProfilState(null)
-        }
-      })
+
+      // Vérifie si la session est déjà restaurée
+      if (window.netlifyIdentity.currentUser()) setAdmin()
+
+      // Écoute l'init (restauration asynchrone de session au chargement)
+      window.netlifyIdentity.on('init', (user) => { if (user) setAdmin() })
+      window.netlifyIdentity.on('login', setAdmin)
+      window.netlifyIdentity.on('logout', revertAdmin)
     }
 
     if (window.netlifyIdentity) {

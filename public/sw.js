@@ -1,4 +1,4 @@
-const CACHE = 'kit-gn-v1'
+const CACHE = 'kit-gn-v3'
 
 const PRECACHE = [
   '/',
