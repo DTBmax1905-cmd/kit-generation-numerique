@@ -1,0 +1,9 @@
+{
+  "emoji": "🎮",
+  "id": "mots croisés",
+  "titre": "Mots Croisés",
+  "categorie": "logique",
+  "url": "https://mots-croises-thematiques.netlify.app/",
+  "description": "Générateur de mots croisés thématiques",
+  "couleur": "teal"
+}
