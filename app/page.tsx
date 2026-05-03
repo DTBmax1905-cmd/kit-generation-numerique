@@ -63,26 +63,52 @@ export default function HomePage() {
       </section>
 
       {/* Navigation cards */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-8">
-        {sections.map(({ href, titre, description, emoji, bg, text }) => (
-          <Link
-            key={href}
-            href={href}
-            className={`card bg-gradient-to-br ${bg} p-6 flex flex-col gap-3 active:scale-95 transition-transform`}
-          >
-            <span className="text-4xl">{emoji}</span>
-            <div>
-              <h2 className={`text-xl font-bold ${text} mb-1`}>{titre}</h2>
-              <p className={`text-sm ${text} opacity-90 leading-relaxed`}>{description}</p>
-            </div>
-            <div className={`flex items-center gap-1 text-sm font-medium ${text} mt-auto opacity-90`}>
-              <span>Accéder</span>
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </Link>
-        ))}
+      <section className="flex flex-col gap-4 pb-8">
+        {/* Présentation — pleine largeur */}
+        {(() => {
+          const s = sections[0]
+          return (
+            <Link
+              href={s.href}
+              className={`card bg-gradient-to-br ${s.bg} p-6 flex flex-col gap-3 active:scale-95 transition-transform`}
+            >
+              <span className="text-4xl">{s.emoji}</span>
+              <div>
+                <h2 className={`text-xl font-bold ${s.text} mb-1`}>{s.titre}</h2>
+                <p className={`text-sm ${s.text} opacity-90 leading-relaxed`}>{s.description}</p>
+              </div>
+              <div className={`flex items-center gap-1 text-sm font-medium ${s.text} mt-auto opacity-90`}>
+                <span>Accéder</span>
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </Link>
+          )
+        })()}
+
+        {/* Jeux et Fiches — côte à côte */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {sections.slice(1).map(({ href, titre, description, emoji, bg, text }) => (
+            <Link
+              key={href}
+              href={href}
+              className={`card bg-gradient-to-br ${bg} p-6 flex flex-col gap-3 active:scale-95 transition-transform`}
+            >
+              <span className="text-4xl">{emoji}</span>
+              <div>
+                <h2 className={`text-xl font-bold ${text} mb-1`}>{titre}</h2>
+                <p className={`text-sm ${text} opacity-90 leading-relaxed`}>{description}</p>
+              </div>
+              <div className={`flex items-center gap-1 text-sm font-medium ${text} mt-auto opacity-90`}>
+                <span>Accéder</span>
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* Footer note */}
