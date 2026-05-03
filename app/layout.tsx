@@ -14,7 +14,12 @@ export const metadata: Metadata = {
     title: 'Kit GN',
   },
   icons: {
-    apple: '/icons/icon-192.png',
+    icon: [
+      { url: '/icons/favicon.ico', sizes: 'any' },
+      { url: '/icons/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icons/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+    ],
+    apple: '/icons/apple-touch-icon.png',
   },
 }
 
@@ -25,11 +30,7 @@ export const viewport: Viewport = {
   maximumScale: 1,
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
       <body>
@@ -38,6 +39,13 @@ export default function RootLayout({
           {children}
         </main>
         <BottomNav />
+        <Script id="register-sw" strategy="afterInteractive">{`
+          if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+              navigator.serviceWorker.register('/sw.js');
+            });
+          }
+        `}</Script>
         <Script
           src="https://identity.netlify.com/v1/netlify-identity-widget.js"
           strategy="afterInteractive"
