@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import fichesData from '@/data/fiches.json'
+import { getFiches } from '@/lib/content'
 import type { FichesData } from '@/lib/types'
 
 interface Props {
@@ -35,6 +36,7 @@ export default function ThematiquePage({ params }: Props) {
   const thematique = data.thematiques.find((t) => t.id === params.thematique)
   if (!thematique) notFound()
 
+  const fiches = getFiches()
   const c = couleurs[thematique.couleur] ?? couleurs.blue
 
   return (
@@ -62,7 +64,7 @@ export default function ThematiquePage({ params }: Props) {
       {/* Sous-thématiques */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {thematique.sous_thematiques.map((st) => {
-          const fichesCount = data.fiches.filter(
+          const fichesCount = fiches.filter(
             (f) => f.thematique === thematique.id && f.sous_thematique === st.id
           ).length
 
