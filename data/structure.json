@@ -1,0 +1,60 @@
+{
+  "thematiques": [
+    {
+      "id": "sportives",
+      "titre": "Activités sportives",
+      "emoji": "🏃",
+      "couleur": "green",
+      "sous_thematiques": [
+        { "id": "yoga", "titre": "Yoga" },
+        { "id": "postures", "titre": "Postures" },
+        { "id": "exercices", "titre": "Exercices" }
+      ]
+    },
+    {
+      "id": "ressources",
+      "titre": "Activités ressources",
+      "emoji": "📋",
+      "couleur": "blue",
+      "sous_thematiques": [
+        { "id": "contacts-utiles", "titre": "Contacts utiles" },
+        { "id": "chartes", "titre": "Chartes" },
+        { "id": "infos-pratiques", "titre": "Informations pratiques" }
+      ]
+    },
+    {
+      "id": "manuelles",
+      "titre": "Activités manuelles",
+      "emoji": "🔨",
+      "couleur": "orange",
+      "sous_thematiques": [
+        { "id": "bricolage", "titre": "Bricolage" },
+        { "id": "recettes", "titre": "Recettes" },
+        { "id": "creations", "titre": "Créations" }
+      ]
+    },
+    {
+      "id": "culturelles",
+      "titre": "Activités culturelles",
+      "emoji": "🏛️",
+      "couleur": "purple",
+      "sous_thematiques": [
+        { "id": "chateaux", "titre": "Châteaux" },
+        { "id": "musees", "titre": "Musées" },
+        { "id": "lectures", "titre": "Lectures" },
+        { "id": "bibliotheques", "titre": "Bibliothèques" }
+      ]
+    },
+    {
+      "id": "jeux",
+      "titre": "Activités jeux",
+      "emoji": "🎮",
+      "couleur": "pink",
+      "sous_thematiques": [
+        { "id": "mots-meles", "titre": "Mots mêlés" },
+        { "id": "mots-croises", "titre": "Mots croisés" },
+        { "id": "jeux-educatifs", "titre": "Jeux éducatifs" }
+      ]
+    }
+  ]
+}

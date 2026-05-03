@@ -1,6 +1,12 @@
 import fs from 'fs'
 import path from 'path'
-import type { Fiche, Jeu } from './types'
+import type { Fiche, Jeu, Thematique } from './types'
+
+export function getStructure(): { thematiques: Thematique[] } {
+  const file = path.join(process.cwd(), 'data/structure.json')
+  const raw = fs.readFileSync(file, 'utf-8')
+  return JSON.parse(raw)
+}
 
 export function getFiches(): Fiche[] {
   const dir = path.join(process.cwd(), 'content/fiches')
@@ -23,7 +29,6 @@ export function getFiches(): Fiche[] {
 export function getJeux(): Jeu[] {
   const dir = path.join(process.cwd(), 'content/jeux')
 
-  // Si pas encore de jeux dans content/, utiliser data/jeux.json
   if (!fs.existsSync(dir) || fs.readdirSync(dir).filter(f => f.endsWith('.json')).length === 0) {
     const fallback = path.join(process.cwd(), 'data/jeux.json')
     const raw = fs.readFileSync(fallback, 'utf-8')

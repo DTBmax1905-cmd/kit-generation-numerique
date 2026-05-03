@@ -1,22 +1,19 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import fichesData from '@/data/fiches.json'
-import { getFiches } from '@/lib/content'
-import type { FichesData } from '@/lib/types'
+import { getStructure, getFiches } from '@/lib/content'
 import FicheViewer from '@/components/FicheViewer'
 
 interface Props {
   params: { thematique: string; 'sous-thematique': string }
 }
 
-const data = fichesData as FichesData
-
 export const dynamic = 'force-dynamic'
 
 export function generateStaticParams() {
+  const { thematiques } = getStructure()
   const paths: { thematique: string; 'sous-thematique': string }[] = []
-  data.thematiques.forEach((t) => {
+  thematiques.forEach((t) => {
     t.sous_thematiques.forEach((st) => {
       paths.push({ thematique: t.id, 'sous-thematique': st.id })
     })
@@ -25,7 +22,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const thematique = data.thematiques.find((t) => t.id === params.thematique)
+  const { thematiques } = getStructure()
+  const thematique = thematiques.find((t) => t.id === params.thematique)
   const sousThematique = thematique?.sous_thematiques.find((st) => st.id === params['sous-thematique'])
   return {
     title: sousThematique
@@ -35,7 +33,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function SousThematiquePage({ params }: Props) {
-  const thematique = data.thematiques.find((t) => t.id === params.thematique)
+  const { thematiques } = getStructure()
+  const thematique = thematiques.find((t) => t.id === params.thematique)
   if (!thematique) notFound()
 
   const sousThematique = thematique.sous_thematiques.find((st) => st.id === params['sous-thematique'])
@@ -47,7 +46,6 @@ export default function SousThematiquePage({ params }: Props) {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-6">
-      {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6 flex-wrap">
         <Link href="/fiches" className="hover:text-loiret-blue transition-colors">Fiches mémo</Link>
         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -81,7 +79,7 @@ export default function SousThematiquePage({ params }: Props) {
       ) : (
         <div className="grid grid-cols-1 gap-4">
           {fiches.map((fiche) => (
-            <FicheViewer key={fiche.id} fiche={fiche} />
+            <FicheViewer key={fiche.id ?? fiche.titre} fiche={fiche} />
           ))}
         </div>
       )}

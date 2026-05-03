@@ -1,32 +1,29 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import fichesData from '@/data/fiches.json'
-import { getFiches } from '@/lib/content'
-import type { FichesData } from '@/lib/types'
+import { getStructure, getFiches } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Fiches mémo | Kit génération numérique',
 }
 
 const couleurs: Record<string, { bg: string; text: string; light: string }> = {
-  green:  { bg: 'from-emerald-500 to-teal-400',     text: 'text-white', light: 'bg-emerald-50 text-emerald-700' },
+  green:  { bg: 'from-emerald-500 to-teal-400',        text: 'text-white', light: 'bg-emerald-50 text-emerald-700' },
   blue:   { bg: 'from-loiret-blue to-loiret-blue-mid', text: 'text-white', light: 'bg-blue-50 text-loiret-blue' },
-  orange: { bg: 'from-loiret-orange to-amber-400',   text: 'text-white', light: 'bg-orange-50 text-orange-700' },
-  purple: { bg: 'from-violet-600 to-purple-500',     text: 'text-white', light: 'bg-violet-50 text-violet-700' },
-  pink:   { bg: 'from-pink-500 to-rose-400',         text: 'text-white', light: 'bg-pink-50 text-pink-700' },
+  orange: { bg: 'from-loiret-orange to-amber-400',     text: 'text-white', light: 'bg-orange-50 text-orange-700' },
+  purple: { bg: 'from-violet-600 to-purple-500',       text: 'text-white', light: 'bg-violet-50 text-violet-700' },
+  pink:   { bg: 'from-pink-500 to-rose-400',           text: 'text-white', light: 'bg-pink-50 text-pink-700' },
 }
 
-const data = fichesData as FichesData
-
 export default function FichesPage() {
+  const { thematiques } = getStructure()
   const fiches = getFiches()
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-6">
-      {/* Header */}
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-2 bg-loiret-orange-light text-loiret-orange-dark text-sm font-medium px-4 py-1.5 rounded-full mb-4">
           <span>📚</span>
-          <span>{data.thematiques.length} thématiques</span>
+          <span>{thematiques.length} thématiques</span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-bold text-loiret-blue-dark mb-2">
           Fiches mémo
@@ -36,9 +33,8 @@ export default function FichesPage() {
         </p>
       </div>
 
-      {/* Thématiques grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {data.thematiques.map((thematique) => {
+        {thematiques.map((thematique) => {
           const c = couleurs[thematique.couleur] ?? couleurs.blue
           const fichesCount = fiches.filter(f => f.thematique === thematique.id).length
 
@@ -54,6 +50,7 @@ export default function FichesPage() {
                   <h2 className={`font-bold text-lg ${c.text}`}>{thematique.titre}</h2>
                   <p className={`text-sm ${c.text} opacity-80`}>
                     {thematique.sous_thematiques.length} sous-thématiques
+                    {fichesCount > 0 && ` · ${fichesCount} fiche${fichesCount > 1 ? 's' : ''}`}
                   </p>
                 </div>
               </div>
