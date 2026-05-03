@@ -1,17 +1,14 @@
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const jwt = require('jsonwebtoken')
-
-const HEADERS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-  'Content-Type': 'application/json',
-}
-
-function json(statusCode, data) {
-  return { statusCode, headers: HEADERS, body: JSON.stringify(data) }
-}
-
 exports.handler = async (event, context) => {
+  const HEADERS = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Content-Type': 'application/json',
+  }
+
+  function json(statusCode, data) {
+    return { statusCode, headers: HEADERS, body: JSON.stringify(data) }
+  }
+
   if (event.httpMethod === 'OPTIONS') {
     return { statusCode: 204, headers: HEADERS, body: '' }
   }
@@ -21,24 +18,15 @@ exports.handler = async (event, context) => {
     return json(401, { error: 'Non authentifié' })
   }
 
-  const JWT_SECRET = process.env.JWT_SECRET
-  if (!JWT_SECRET) {
-    return json(500, { error: 'JWT_SECRET non configuré — voir la documentation de configuration' })
+  // Netlify fournit automatiquement le token admin Identity dans clientContext
+  const identity = context.clientContext?.identity
+  if (!identity?.token || !identity?.url) {
+    return json(500, {
+      error: 'Token Identity non disponible. Vérifiez que Netlify Identity est activé sur ce site.',
+    })
   }
 
-  const siteUrl = process.env.URL
-  if (!siteUrl) {
-    return json(500, { error: 'Variable URL manquante' })
-  }
-
-  const identityUrl = `${siteUrl}/.netlify/identity`
-
-  // Token service_role pour l'API admin GoTrue
-  const adminToken = jwt.sign(
-    { sub: 'service-role', role: 'service_role', aud: 'netlify' },
-    JWT_SECRET,
-    { algorithm: 'HS256' }
-  )
+  const { url: identityUrl, token: adminToken } = identity
 
   const adminHeaders = {
     Authorization: `Bearer ${adminToken}`,
