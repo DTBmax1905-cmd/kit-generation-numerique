@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { PROFILS } from '@/lib/profils'
+import { PROFILS, PROFIL_ADMIN } from '@/lib/profils'
 import { useProfile } from '@/components/ProfileProvider'
 
 declare global {
@@ -22,7 +22,7 @@ export default function ConnexionPage() {
   const [adminUser, setAdminUser] = useState<Record<string, unknown> | null>(null)
   const [identityLoaded, setIdentityLoaded] = useState(false)
 
-  const profilActuel = PROFILS.find((p) => p.id === profil)
+  const profilActuel = profil === 'admin' ? PROFIL_ADMIN : PROFILS.find((p) => p.id === profil)
 
   useEffect(() => {
     const init = () => {
@@ -53,7 +53,7 @@ export default function ConnexionPage() {
           <h2 className="font-bold text-loiret-blue-dark text-lg">Changer de profil</h2>
         </div>
         <div className="grid grid-cols-2 gap-3">
-          {PROFILS.map((p) => (
+          {PROFILS.filter((p) => p.id !== 'admin').map((p) => (
             <button
               key={p.id}
               onClick={() => { setProfil(p.id); setChangingProfil(false) }}

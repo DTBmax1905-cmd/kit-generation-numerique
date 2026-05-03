@@ -59,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script id="netlify-identity-init" strategy="afterInteractive">{`
           if (window.netlifyIdentity) {
             window.netlifyIdentity.on("init", function(user) {
+              window.dispatchEvent(new Event("netlifyIdentityReady"));
               if (!user) {
                 window.netlifyIdentity.on("login", function() {
                   document.location.href = "/";

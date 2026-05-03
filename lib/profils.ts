@@ -22,14 +22,15 @@ export const PROFILS: Profil[] = [
     description: 'Outils et ressources pédagogiques',
     couleur: 'from-violet-600 to-purple-500',
   },
-  {
-    id: 'admin',
-    label: 'Administrateur',
-    emoji: '⚙️',
-    description: 'Accès complet à toutes les ressources',
-    couleur: 'from-gray-700 to-gray-600',
-  },
 ]
+
+export const PROFIL_ADMIN: Profil = {
+  id: 'admin',
+  label: 'Administrateur',
+  emoji: '⚙️',
+  description: 'Accès complet à toutes les ressources',
+  couleur: 'from-gray-700 to-gray-600',
+}
 
 export function ficheVisiblePourProfil(fiche: Fiche, profil: ProfilId): boolean {
   if (profil === 'admin') return true
