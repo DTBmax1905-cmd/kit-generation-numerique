@@ -1,15 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   images: {
     unoptimized: true,
-  },
-  async headers() {
-    return [
-      {
-        source: '/admin/:path*',
-        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
-      },
-    ]
   },
 }
 

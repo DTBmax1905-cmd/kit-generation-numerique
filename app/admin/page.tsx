@@ -1,5 +1,10 @@
-import { redirect } from 'next/navigation'
+'use client'
+
+import { useEffect } from 'react'
 
 export default function AdminRedirect() {
-  redirect('/admin/index.html')
+  useEffect(() => {
+    window.location.href = '/admin/index.html'
+  }, [])
+  return null
 }

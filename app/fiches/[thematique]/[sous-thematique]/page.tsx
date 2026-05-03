@@ -8,8 +8,6 @@ interface Props {
   params: { thematique: string; 'sous-thematique': string }
 }
 
-export const dynamic = 'force-dynamic'
-
 export function generateStaticParams() {
   const { thematiques } = getStructure()
   const paths: { thematique: string; 'sous-thematique': string }[] = []
