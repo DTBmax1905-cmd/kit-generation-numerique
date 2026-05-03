@@ -1,1 +1,7 @@
-{"id":"sportives","titre":"Activités sportives","emoji":"🏃","couleur":"green","ordre":1}
+{
+  "id": "sportives",
+  "titre": "Activités sportives",
+  "emoji": "🏃",
+  "couleur": "green",
+  "ordre": 2
+}
