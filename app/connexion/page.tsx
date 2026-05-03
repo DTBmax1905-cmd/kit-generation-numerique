@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { PROFILS, PROFIL_ADMIN } from '@/lib/profils'
 import { useProfile } from '@/components/ProfileProvider'
 
@@ -100,6 +101,23 @@ export default function ConnexionPage() {
       >
         Changer de profil
       </button>
+
+      {/* Gestion des accès — visible uniquement pour les admins */}
+      {profil === 'admin' && (
+        <Link
+          href="/admin-utilisateurs"
+          className="flex items-center gap-3 card p-4 mb-4 hover:shadow-md transition-shadow"
+        >
+          <span className="text-2xl">👥</span>
+          <div className="flex-1 min-w-0">
+            <p className="font-semibold text-gray-700 text-sm">Gestion des accès administrateur</p>
+            <p className="text-xs text-gray-400">Inviter ou révoquer des administrateurs</p>
+          </div>
+          <svg className="w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </Link>
+      )}
 
       {/* Connexion admin CMS */}
       <div className="card p-5">
