@@ -1,18 +1,18 @@
 {
-  "titre": "Plan numérique départemental",
+  "titre": "Plan numérique départemental pour les familles loirétaines",
   "intro": "Le Département du Loiret s'engage pour un numérique inclusif et éducatif, au service de toutes les familles du territoire.",
   "engagement_titre": "L'engagement du Département",
-  "engagement_texte": "Le Loiret investit dans la culture numérique de ses habitants en proposant des ressources gratuites, accessibles et adaptées à tous les âges, dans le cadre du programme Agir pour nos jeunes – Numérique.",
+  "engagement_texte": "En 2025, face aux signaux d’alerte répétés relatifs aux risques liés aux usages inadaptés des écrans chez les collégiens, le Département a engagé un « Plan Numérique Départemental pour les Familles Loirétaines ». Celui-ci vise à accompagner les jeunes vers un usage responsable, équilibré et éclairé du numérique, en s’appuyant sur un partenariat étroit avec les collèges.\nCette démarche associe les jeunes, les familles, les professionnels de l’Éducation nationale ainsi que les acteurs de la protection de l’Enfance, dans une logique de responsabilité collective, l’enjeu dépassant le seul cadre familial.\n",
   "objectifs": [
     {
       "emoji": "💡",
-      "titre": "Éduquer au numérique",
-      "texte": "Développer les compétences numériques des jeunes et de leurs familles pour une pratique éclairée d'internet."
+      "titre": "Enquête départementale ",
+      "texte": "Une enquête départementale réalisée auprès des collégiens, ayant permis d’interroger 2000 collégiens :\no\t88 % déclarent utiliser quotidiennement un téléphone, \no\t12 % en font un usage intensif,\no\t23 % un usage qualifié d’excessif.\n"
     },
     {
       "emoji": "🤝",
-      "titre": "Lutter contre l'illectronisme",
-      "texte": "Accompagner les personnes éloignées du numérique pour réduire la fracture et garantir l'égalité d'accès."
+      "titre": "Consultation des professionnels et des collégiens",
+      "texte": "- Une consultation des professionnels et des collégiens, menée auprès d’un échantillon de collèges en partenariat avec l’atelier CANOPE du Loiret, qui a mis en évidence la nécessité de travailler sur deux thématiques prioritaires : l’esprit critique et la santé des jeunes\n\n- Le déploiement de quatre Hackathons, animés par les animateurs numériques du SATe dans quatre collèges volontaires répartis sur le territoire départemental, visant à co-construire un kit d’accompagnement des familles dans le dialogue autour des usages numériques :\no\tErnest BILDSTEIN à GIEN, le 27 novembre 2025\no\tPablo PICASSO à CHALETTE-SUR-LOING, le 15 janvier 2026\no\tAndré MALRAUX à SAINT JEAN DE LA RUELLE, le 5 février 2026\no\tVictor HUGO à PUISEAUX, le 9 février 2026\n"
     },
     {
       "emoji": "📲",
@@ -21,14 +21,26 @@
     },
     {
       "emoji": "🏫",
-      "titre": "Partenariat éducatif",
-      "texte": "Fédérer les équipes éducatives, les parents et les adolescents autour d'une culture numérique commune."
+      "titre": "Parcours éducatif",
+      "texte": "Le déploiement de « parcours » par bassin, dans le cadre d’un marché public, sur six territoires définis par les services de l’Education Nationale "
     }
   ],
   "publics": [
-    { "emoji": "👨‍👩‍👧‍👦", "label": "Familles loirétaines" },
-    { "emoji": "👪", "label": "Parents" },
-    { "emoji": "🧑", "label": "Adolescents" },
-    { "emoji": "👩‍🏫", "label": "Équipes éducatives" }
+    {
+      "emoji": "👨‍👩‍👧‍👦",
+      "label": "Familles loirétaines"
+    },
+    {
+      "emoji": "👪",
+      "label": "Parents"
+    },
+    {
+      "emoji": "🧑",
+      "label": "Adolescents"
+    },
+    {
+      "emoji": "👩‍🏫",
+      "label": "Équipes éducatives"
+    }
   ]
 }
