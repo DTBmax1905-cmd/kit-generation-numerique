@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import fichesData from '@/data/fiches.json'
+import { getFiches } from '@/lib/content'
 import type { FichesData } from '@/lib/types'
 import FicheViewer from '@/components/FicheViewer'
 
@@ -38,7 +39,7 @@ export default function SousThematiquePage({ params }: Props) {
   const sousThematique = thematique.sous_thematiques.find((st) => st.id === params['sous-thematique'])
   if (!sousThematique) notFound()
 
-  const fiches = data.fiches.filter(
+  const fiches = getFiches().filter(
     (f) => f.thematique === params.thematique && f.sous_thematique === params['sous-thematique']
   )
 
