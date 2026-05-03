@@ -106,36 +106,23 @@ export default function ConnexionPage() {
       {profil === 'admin' && (
         <div className="card p-4 mb-4">
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Administration</p>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1">
             {[
               { href: '/admin-utilisateurs', emoji: '👥', label: 'Gérer les accès admin', desc: 'Inviter ou révoquer des administrateurs' },
               { href: '/admin/index.html#/collections/presentation', emoji: '📖', label: 'Modifier la présentation', desc: 'Titre, textes, objectifs, publics' },
               { href: '/admin/index.html#/collections/jeux', emoji: '🎮', label: 'Gérer les jeux en ligne', desc: 'Ajouter, modifier, supprimer des jeux' },
-            ].map(({ href, emoji, label, desc }) => {
-              const isExternal = href.startsWith('/admin/index')
-              const props = isExternal
-                ? { href, className: 'flex items-center gap-3 rounded-xl p-3 hover:bg-gray-50 transition-colors' }
-                : {}
-              const inner = (
-                <>
-                  <span className="text-xl shrink-0">{emoji}</span>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-medium text-gray-700 text-sm">{label}</p>
-                    <p className="text-xs text-gray-400">{desc}</p>
-                  </div>
-                  <svg className="w-4 h-4 text-gray-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </>
-              )
-              return isExternal ? (
-                <a key={href} {...props}>{inner}</a>
-              ) : (
-                <Link key={href} href={href} className="flex items-center gap-3 rounded-xl p-3 hover:bg-gray-50 transition-colors">
-                  {inner}
-                </Link>
-              )
-            })}
+            ].map(({ href, emoji, label, desc }) => (
+              <a key={href} href={href} className="flex items-center gap-3 rounded-xl p-3 hover:bg-gray-50 transition-colors">
+                <span className="text-xl shrink-0">{emoji}</span>
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium text-gray-700 text-sm">{label}</p>
+                  <p className="text-xs text-gray-400">{desc}</p>
+                </div>
+                <svg className="w-4 h-4 text-gray-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            ))}
           </div>
         </div>
       )}

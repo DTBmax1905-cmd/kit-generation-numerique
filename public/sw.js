@@ -1,11 +1,7 @@
-const CACHE = 'kit-gn-v3'
+const CACHE = 'kit-gn-v4'
 
-const PRECACHE = [
-  '/',
-  '/presentation',
-  '/jeux',
-  '/fiches',
-  '/connexion',
+// Ne mettre en cache que les assets statiques, jamais les pages HTML
+const PRECACHE_ASSETS = [
   '/icons/web-app-manifest-192x192.png',
   '/icons/web-app-manifest-512x512.png',
   '/icons/apple-touch-icon.png',
@@ -15,7 +11,7 @@ const PRECACHE = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(PRECACHE))
+    caches.open(CACHE).then((cache) => cache.addAll(PRECACHE_ASSETS))
   )
   self.skipWaiting()
 })
@@ -32,6 +28,17 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return
 
+  const url = new URL(event.request.url)
+
+  // Les pages HTML sont toujours récupérées depuis le réseau (jamais depuis le cache)
+  if (event.request.destination === 'document' || url.pathname.endsWith('.html')) {
+    event.respondWith(
+      fetch(event.request).catch(() => caches.match(event.request))
+    )
+    return
+  }
+
+  // Les assets statiques : cache d'abord, réseau en fallback
   event.respondWith(
     caches.match(event.request).then((cached) => {
       if (cached) return cached
