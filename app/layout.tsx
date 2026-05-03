@@ -3,6 +3,8 @@ import Script from 'next/script'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import BottomNav from '@/components/BottomNav'
+import ProfileProvider from '@/components/ProfileProvider'
+import ProfileGate from '@/components/ProfileGate'
 
 export const metadata: Metadata = {
   title: 'Kit génération numérique | Département du Loiret',
@@ -34,11 +36,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr">
       <body>
-        <Navbar />
-        <main className="min-h-screen pb-20 md:pb-0">
-          {children}
-        </main>
-        <BottomNav />
+        <ProfileProvider>
+          <ProfileGate>
+            <Navbar />
+            <main className="min-h-screen pb-20 md:pb-0">
+              {children}
+            </main>
+            <BottomNav />
+          </ProfileGate>
+        </ProfileProvider>
         <Script id="register-sw" strategy="afterInteractive">{`
           if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {

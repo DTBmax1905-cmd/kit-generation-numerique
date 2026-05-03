@@ -95,6 +95,16 @@ collections:
           - { label: "PDF", value: pdf }
       - { name: fichier, label: Fichier, widget: file }
       - { name: description, label: Description, widget: text, required: false }
+      - name: profils
+        label: "Visible par (laisser vide = tout le monde)"
+        widget: select
+        multiple: true
+        required: false
+        options:
+          - { label: "👨‍👩‍👧 Parents", value: parent }
+          - { label: "🧑 Adolescents", value: ado }
+          - { label: "👩‍🏫 Équipe éducative", value: educatif }
+        hint: "Si vide, la fiche est visible par tous les profils"
       - { name: date_maj, label: "Date de mise à jour", widget: datetime }
 
   - name: jeux

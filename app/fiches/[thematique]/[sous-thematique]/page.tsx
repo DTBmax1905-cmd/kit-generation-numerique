@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getStructure, getFiches } from '@/lib/content'
-import FicheViewer from '@/components/FicheViewer'
+import FichesList from '@/components/FichesList'
 
 interface Props {
   params: { thematique: string; 'sous-thematique': string }
@@ -66,21 +66,7 @@ export default function SousThematiquePage({ params }: Props) {
         </div>
       </div>
 
-      {fiches.length === 0 ? (
-        <div className="text-center py-16">
-          <div className="text-5xl mb-4">📂</div>
-          <p className="text-gray-500 font-medium mb-1">Aucune fiche disponible</p>
-          <p className="text-gray-400 text-sm">
-            Les fiches seront ajoutées prochainement par l&apos;administrateur.
-          </p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 gap-4">
-          {fiches.map((fiche) => (
-            <FicheViewer key={fiche.id ?? fiche.titre} fiche={fiche} />
-          ))}
-        </div>
-      )}
+      <FichesList fiches={fiches} />
     </div>
   )
 }
