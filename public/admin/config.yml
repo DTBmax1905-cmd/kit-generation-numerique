@@ -8,47 +8,58 @@ media_folder: public/uploads
 public_folder: /uploads
 
 collections:
-  - name: parametres
-    label: "⚙️ Structure du site"
-    files:
-      - name: structure
-        label: "Thématiques & Sous-thématiques"
-        file: data/structure.json
-        fields:
-          - name: thematiques
-            label: Thématiques
-            label_singular: Thématique
-            widget: list
-            allow_add: true
-            summary: "{{fields.emoji}} {{fields.titre}}"
-            fields:
-              - name: id
-                label: "Identifiant (sans espaces, sans accents)"
-                widget: string
-                hint: "Ex: sport, bien-etre, culture — utilisé dans l'URL, ne pas modifier après création"
-              - { name: titre, label: "Titre affiché", widget: string }
-              - { name: emoji, label: "Emoji", widget: string, default: "📁" }
-              - name: couleur
-                label: Couleur
-                widget: select
-                options:
-                  - { label: "Vert", value: green }
-                  - { label: "Bleu", value: blue }
-                  - { label: "Orange", value: orange }
-                  - { label: "Violet", value: purple }
-                  - { label: "Rose", value: pink }
-              - name: sous_thematiques
-                label: Sous-thématiques
-                label_singular: Sous-thématique
-                widget: list
-                allow_add: true
-                summary: "{{fields.titre}}"
-                fields:
-                  - name: id
-                    label: "Identifiant (sans espaces, sans accents)"
-                    widget: string
-                    hint: "Ex: yoga, recettes, chateaux — utilisé dans l'URL"
-                  - { name: titre, label: "Titre affiché", widget: string }
+
+  - name: thematiques
+    label: "📁 Thématiques"
+    label_singular: Thématique
+    folder: content/thematiques
+    format: json
+    extension: json
+    create: true
+    slug: "{{id}}"
+    identifier_field: titre
+    summary: "{{emoji}} {{titre}}"
+    fields:
+      - name: id
+        label: "Identifiant (sans espaces ni accents)"
+        widget: string
+        hint: "Ex: sport, bien-etre — utilisé dans l'URL, ne pas modifier après création"
+      - { name: titre, label: "Titre affiché", widget: string }
+      - { name: emoji, label: "Emoji", widget: string, default: "📁" }
+      - name: couleur
+        label: Couleur
+        widget: select
+        options:
+          - { label: "Vert", value: green }
+          - { label: "Bleu", value: blue }
+          - { label: "Orange", value: orange }
+          - { label: "Violet", value: purple }
+          - { label: "Rose", value: pink }
+      - { name: ordre, label: "Ordre d'affichage", widget: number, default: 99 }
+
+  - name: sous_thematiques
+    label: "📂 Sous-thématiques"
+    label_singular: Sous-thématique
+    folder: content/sous-thematiques
+    format: json
+    extension: json
+    create: true
+    slug: "{{id}}"
+    identifier_field: titre
+    summary: "{{titre}} ({{thematique_id}})"
+    fields:
+      - name: id
+        label: "Identifiant (sans espaces ni accents)"
+        widget: string
+        hint: "Ex: yoga, recettes — utilisé dans l'URL"
+      - { name: titre, label: "Titre affiché", widget: string }
+      - name: thematique_id
+        label: "Thématique parente"
+        widget: relation
+        collection: thematiques
+        search_fields: [titre]
+        value_field: id
+        display_fields: [titre]
 
   - name: fiches
     label: "📄 Fiches mémo"
@@ -59,17 +70,23 @@ collections:
     create: true
     slug: "{{thematique}}-{{sous_thematique}}-{{slug}}"
     identifier_field: titre
-    summary: "{{thematique}} › {{sous_thematique}} — {{titre}}"
+    summary: "{{titre}}"
     fields:
       - { name: titre, label: Titre, widget: string }
       - name: thematique
-        label: Thématique (ID)
-        widget: string
-        hint: "Copier l'identifiant exact depuis ⚙️ Structure du site (ex: sportives, manuelles)"
+        label: Thématique
+        widget: relation
+        collection: thematiques
+        search_fields: [titre]
+        value_field: id
+        display_fields: [titre]
       - name: sous_thematique
-        label: Sous-thématique (ID)
-        widget: string
-        hint: "Copier l'identifiant exact depuis ⚙️ Structure du site (ex: yoga, bricolage)"
+        label: Sous-thématique
+        widget: relation
+        collection: sous_thematiques
+        search_fields: [titre]
+        value_field: id
+        display_fields: ["titre", "thematique_id"]
       - name: type
         label: Type de fichier
         widget: select
