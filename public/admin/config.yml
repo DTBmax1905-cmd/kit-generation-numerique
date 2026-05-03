@@ -31,8 +31,24 @@ collections:
           - { label: "Activités jeux", value: jeux }
       - name: sous_thematique
         label: Sous-thématique
-        widget: string
-        hint: "ID de la sous-thématique (ex: yoga, bricolage, chateaux)"
+        widget: select
+        options:
+          - { label: "Yoga", value: yoga }
+          - { label: "Postures", value: postures }
+          - { label: "Exercices", value: exercices }
+          - { label: "Contacts utiles", value: contacts-utiles }
+          - { label: "Chartes", value: chartes }
+          - { label: "Informations pratiques", value: infos-pratiques }
+          - { label: "Bricolage", value: bricolage }
+          - { label: "Recettes", value: recettes }
+          - { label: "Créations", value: creations }
+          - { label: "Châteaux", value: chateaux }
+          - { label: "Musées", value: musees }
+          - { label: "Lectures", value: lectures }
+          - { label: "Bibliothèques", value: bibliotheques }
+          - { label: "Mots mêlés", value: mots-meles }
+          - { label: "Mots croisés", value: mots-croises }
+          - { label: "Jeux éducatifs", value: jeux-educatifs }
       - name: type
         label: Type de fichier
         widget: select

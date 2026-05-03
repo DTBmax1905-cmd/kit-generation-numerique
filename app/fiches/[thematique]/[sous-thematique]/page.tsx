@@ -12,6 +12,8 @@ interface Props {
 
 const data = fichesData as FichesData
 
+export const dynamic = 'force-dynamic'
+
 export function generateStaticParams() {
   const paths: { thematique: string; 'sous-thematique': string }[] = []
   data.thematiques.forEach((t) => {
