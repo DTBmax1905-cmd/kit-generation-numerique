@@ -1,1 +1,7 @@
-{"id":"ressources","titre":"Activités ressources","emoji":"📋","couleur":"blue","ordre":2}
+{
+  "id": "ressources",
+  "titre": "Fiches Ressources",
+  "emoji": "📋",
+  "couleur": "blue",
+  "ordre": 1
+}
