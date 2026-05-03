@@ -5,5 +5,9 @@
   "sous_thematique": "postures",
   "type": "image",
   "fichier": "/uploads/0e5462fc-f0f4-4a6e-ad5b-de889af93456.png",
-  "date_maj": "2026-05-03T13:45:00.000+02:00"
+  "date_maj": "2026-05-03T13:45:00.000+02:00",
+  "profils": [
+    "parent",
+    "ado"
+  ]
 }

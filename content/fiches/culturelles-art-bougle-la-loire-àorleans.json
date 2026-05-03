@@ -4,5 +4,9 @@
   "thematique": "culturelles",
   "sous_thematique": "art",
   "type": "pdf",
-  "date_maj": "2026-05-03T15:23:00.000+02:00"
+  "date_maj": "2026-05-03T15:23:00.000+02:00",
+  "profils": [
+    "parent",
+    "ado"
+  ]
 }

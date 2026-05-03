@@ -4,5 +4,8 @@
   "type": "image",
   "fichier": "/uploads/panneaunepasderanger.png",
   "titre": "Panneau ne pas déranger",
-  "date_maj": "2026-05-03T16:07:00.000+02:00"
+  "date_maj": "2026-05-03T16:07:00.000+02:00",
+  "profils": [
+    "ado"
+  ]
 }
