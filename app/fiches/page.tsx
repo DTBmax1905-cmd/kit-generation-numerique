@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import fichesData from '@/data/fiches.json'
+import { getFiches } from '@/lib/content'
 import type { FichesData } from '@/lib/types'
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ const couleurs: Record<string, { bg: string; text: string; light: string }> = {
 const data = fichesData as FichesData
 
 export default function FichesPage() {
+  const fiches = getFiches()
   return (
     <div className="max-w-3xl mx-auto px-4 py-6">
       {/* Header */}
@@ -38,7 +40,7 @@ export default function FichesPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {data.thematiques.map((thematique) => {
           const c = couleurs[thematique.couleur] ?? couleurs.blue
-          const fichesCount = data.fiches.filter(f => f.thematique === thematique.id).length
+          const fichesCount = fiches.filter(f => f.thematique === thematique.id).length
 
           return (
             <Link
