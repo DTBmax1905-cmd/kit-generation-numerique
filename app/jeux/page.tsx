@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import jeuxData from '@/data/jeux.json'
-import type { Jeu } from '@/lib/types'
+import { getJeux } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Jeux en ligne | Kit génération numérique',
@@ -14,16 +13,16 @@ const couleurs: Record<string, string> = {
   green: 'from-emerald-500 to-teal-400',
 }
 
-const jeux: Jeu[] = jeuxData
-
 export default function JeuxPage() {
+  const jeux = getJeux()
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-6">
       {/* Header */}
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-2 bg-cyan-50 text-apnj-teal text-sm font-medium px-4 py-1.5 rounded-full mb-4">
           <span>🎮</span>
-          <span>4 jeux disponibles</span>
+          <span>{jeux.length} jeu{jeux.length > 1 ? 'x' : ''} disponible{jeux.length > 1 ? 's' : ''}</span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-bold text-loiret-blue-dark mb-2">
           Jeux en ligne
