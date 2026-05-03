@@ -6,8 +6,32 @@
     <meta name="robots" content="noindex" />
     <title>Administration | Kit génération numérique</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <style>
+      #admin-user-link {
+        position: fixed;
+        top: 12px;
+        right: 16px;
+        z-index: 9999;
+        background: #005baa;
+        color: #fff;
+        text-decoration: none;
+        font-family: sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 7px 14px;
+        border-radius: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,51,.2);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      #admin-user-link:hover { background: #0047aa; }
+    </style>
   </head>
   <body>
+    <a id="admin-user-link" href="/admin-utilisateurs">
+      👥 Gérer les accès admin
+    </a>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </body>
 </html>
