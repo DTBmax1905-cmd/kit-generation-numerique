@@ -9,6 +9,32 @@ public_folder: /uploads
 
 collections:
 
+  - name: presentation
+    label: "📖 Présentation"
+    files:
+      - name: presentation
+        label: "Page de présentation"
+        file: content/presentation.json
+        format: json
+        fields:
+          - { name: titre, label: "Titre principal", widget: string }
+          - { name: intro, label: "Texte d'introduction", widget: text }
+          - { name: engagement_titre, label: "Titre — section engagement", widget: string }
+          - { name: engagement_texte, label: "Texte — section engagement", widget: text }
+          - name: objectifs
+            label: "Objectifs"
+            widget: list
+            fields:
+              - { name: emoji, label: Emoji, widget: string }
+              - { name: titre, label: Titre, widget: string }
+              - { name: texte, label: Texte, widget: text }
+          - name: publics
+            label: "Publics concernés"
+            widget: list
+            fields:
+              - { name: emoji, label: Emoji, widget: string }
+              - { name: label, label: Label, widget: string }
+
   - name: thematiques
     label: "📁 Thématiques"
     label_singular: Thématique

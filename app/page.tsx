@@ -26,14 +26,6 @@ const sections = [
     bg: 'from-loiret-orange to-amber-400',
     text: 'text-white',
   },
-  {
-    href: '/connexion',
-    titre: 'Mon espace',
-    description: 'Connectez-vous pour accéder à votre espace personnalisé.',
-    emoji: '👤',
-    bg: 'from-apnj-navy to-indigo-700',
-    text: 'text-white',
-  },
 ]
 
 export default function HomePage() {

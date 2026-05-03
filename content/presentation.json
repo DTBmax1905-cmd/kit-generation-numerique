@@ -1,0 +1,34 @@
+{
+  "titre": "Plan numérique départemental",
+  "intro": "Le Département du Loiret s'engage pour un numérique inclusif et éducatif, au service de toutes les familles du territoire.",
+  "engagement_titre": "L'engagement du Département",
+  "engagement_texte": "Le Loiret investit dans la culture numérique de ses habitants en proposant des ressources gratuites, accessibles et adaptées à tous les âges, dans le cadre du programme Agir pour nos jeunes – Numérique.",
+  "objectifs": [
+    {
+      "emoji": "💡",
+      "titre": "Éduquer au numérique",
+      "texte": "Développer les compétences numériques des jeunes et de leurs familles pour une pratique éclairée d'internet."
+    },
+    {
+      "emoji": "🤝",
+      "titre": "Lutter contre l'illectronisme",
+      "texte": "Accompagner les personnes éloignées du numérique pour réduire la fracture et garantir l'égalité d'accès."
+    },
+    {
+      "emoji": "📲",
+      "titre": "Ressources accessibles",
+      "texte": "Mettre à disposition des outils pratiques, ludiques et pédagogiques utilisables en famille ou en classe."
+    },
+    {
+      "emoji": "🏫",
+      "titre": "Partenariat éducatif",
+      "texte": "Fédérer les équipes éducatives, les parents et les adolescents autour d'une culture numérique commune."
+    }
+  ],
+  "publics": [
+    { "emoji": "👨‍👩‍👧‍👦", "label": "Familles loirétaines" },
+    { "emoji": "👪", "label": "Parents" },
+    { "emoji": "🧑", "label": "Adolescents" },
+    { "emoji": "👩‍🏫", "label": "Équipes éducatives" }
+  ]
+}
