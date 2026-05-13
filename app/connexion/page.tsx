@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { PROFILS, PROFIL_ADMIN } from '@/lib/profils'
 import { useProfile } from '@/components/ProfileProvider'
+import { useFavorites } from '@/components/FavoritesProvider'
 
 declare global {
   interface Window {
@@ -19,6 +20,7 @@ declare global {
 
 export default function ConnexionPage() {
   const { profil, setProfil, clearProfil } = useProfile()
+  const { favoris } = useFavorites()
   const [changingProfil, setChangingProfil] = useState(false)
   const [adminUser, setAdminUser] = useState<Record<string, unknown> | null>(null)
   const [identityLoaded, setIdentityLoaded] = useState(false)
@@ -101,6 +103,26 @@ export default function ConnexionPage() {
       >
         Changer de profil
       </button>
+
+      {/* Mes favoris */}
+      <Link href="/favoris" className="card p-4 mb-4 flex items-center gap-4 hover:bg-gray-50 transition-colors active:scale-95 transition-transform">
+        <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0">
+          <svg className="w-5 h-5 text-red-500 fill-red-500" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="font-semibold text-gray-800 text-sm">Mes favoris</p>
+          <p className="text-xs text-gray-400">
+            {favoris.length === 0
+              ? 'Aucune fiche sauvegardée'
+              : `${favoris.length} fiche${favoris.length > 1 ? 's' : ''} sauvegardée${favoris.length > 1 ? 's' : ''}`}
+          </p>
+        </div>
+        <svg className="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </Link>
 
       {/* Options admin — visibles uniquement pour les admins */}
       {profil === 'admin' && (

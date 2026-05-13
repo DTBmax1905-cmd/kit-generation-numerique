@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar'
 import BottomNav from '@/components/BottomNav'
 import ProfileProvider from '@/components/ProfileProvider'
 import ProfileGate from '@/components/ProfileGate'
+import FavoritesProvider from '@/components/FavoritesProvider'
 
 export const metadata: Metadata = {
   title: 'Kit génération numérique | Département du Loiret',
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fr">
       <body>
         <ProfileProvider>
+          <FavoritesProvider>
           <ProfileGate>
             <Navbar />
             <main className="min-h-screen pb-20 md:pb-0">
@@ -44,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </main>
             <BottomNav />
           </ProfileGate>
+          </FavoritesProvider>
         </ProfileProvider>
         <Script id="register-sw" strategy="afterInteractive">{`
           if ('serviceWorker' in navigator) {

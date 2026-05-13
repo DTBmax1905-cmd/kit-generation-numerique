@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import type { Fiche } from '@/lib/types'
+import { useFavorites } from '@/components/FavoritesProvider'
 
 interface Props {
   fiche: Fiche
@@ -10,15 +11,18 @@ interface Props {
 
 export default function FicheViewer({ fiche }: Props) {
   const [expanded, setExpanded] = useState(false)
+  const { toggleFavori, isFavori } = useFavorites()
+  const favori = isFavori(fiche.fichier)
 
   return (
     <div className="card overflow-hidden">
-      {/* Header */}
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
-      >
-        <div className="flex items-center gap-3">
+      {/* Header — div flex avec zone cliquable pour expand + bouton favori séparé */}
+      <div className="flex items-center pr-2 hover:bg-gray-50 transition-colors">
+        {/* Zone expand (prend tout l'espace disponible) */}
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="flex-1 flex items-center gap-3 p-4 text-left min-w-0"
+        >
           <div className="w-8 h-8 rounded-lg bg-loiret-blue-light flex items-center justify-center flex-shrink-0">
             {fiche.type === 'pdf' ? (
               <svg className="w-4 h-4 text-loiret-blue" fill="currentColor" viewBox="0 0 24 24">
@@ -30,25 +34,48 @@ export default function FicheViewer({ fiche }: Props) {
               </svg>
             )}
           </div>
-          <div>
+          <div className="min-w-0">
             <p className="font-semibold text-gray-800 text-sm">{fiche.titre}</p>
             {fiche.description && (
               <p className="text-xs text-gray-400">{fiche.description}</p>
             )}
           </div>
-        </div>
-        <div className="flex items-center gap-2 flex-shrink-0 ml-2">
+        </button>
+
+        {/* Droite : badge type + favori + chevron */}
+        <div className="flex items-center gap-2 flex-shrink-0">
           <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full uppercase">
             {fiche.type}
           </span>
-          <svg
-            className={`w-4 h-4 text-gray-400 transition-transform ${expanded ? 'rotate-90' : ''}`}
-            fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          <button
+            onClick={() => toggleFavori(fiche.fichier)}
+            className="p-1.5 rounded-full hover:bg-gray-100 transition-colors"
+            aria-label={favori ? 'Retirer des favoris' : 'Ajouter aux favoris'}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+            <svg
+              className={`w-4 h-4 transition-colors ${favori ? 'text-red-500 fill-red-500' : 'text-gray-300 fill-none'}`}
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </button>
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="p-1.5"
+            tabIndex={-1}
+            aria-hidden="true"
+          >
+            <svg
+              className={`w-4 h-4 text-gray-400 transition-transform ${expanded ? 'rotate-90' : ''}`}
+              fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
-      </button>
+      </div>
 
       {/* Content */}
       {expanded && (
